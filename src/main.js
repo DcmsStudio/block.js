@@ -1,3 +1,5 @@
+import './block-editing.scss'
+
 import Vue from 'vue'
 import App from './App.vue'
 

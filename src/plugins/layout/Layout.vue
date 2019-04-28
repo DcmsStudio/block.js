@@ -1,22 +1,18 @@
 <template>
   <div class="bj-layout">
     <template v-if="isShowDefaults">
-      <div v-for="n in attrs.itemCount" :key="n" class="bj-layout-item-default"></div>
+      <div v-for="n in data.attrs.itemCount" :key="n" class="bj-layout-item-default"></div>
     </template>
     <div v-if="blockJSConfig.isEditing" class="bj-layout-label">Layout</div>
   </div>
 </template>
 
 <script>
-export const layoutAttrDefaults = {
-  itemCount: 3,
-}
-
 export default {
+  name: 'bj-layout',
   inject: ['blockJSConfig'],
   props: {
-    attrs: { type: Object, default: layoutAttrDefaults },
-    items: Array,
+    data: Object,
   },
   computed: {
     isShowDefaults() {

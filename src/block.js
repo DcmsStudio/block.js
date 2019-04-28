@@ -1,8 +1,9 @@
+import './block.scss'
+
 import Vue from 'vue'
 import Buefy from 'buefy'
 import ReactiveProvide from 'vue-reactive-provide'
 
-import './block.scss'
 import BlockComp from './Block.vue'
 
 Vue.use(Buefy)

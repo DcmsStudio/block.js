@@ -6,10 +6,6 @@
 @import "~buefy/src/scss/buefy";
 
 .block-js {
-  .bj-toolbar {
-    padding: 0.5em;
-    margin: 0;
-  }
 
   .bj-layout {
     position: relative;
@@ -51,14 +47,28 @@
   }
 }
 
+.bj-toolbar {
+  z-index: 100;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 4px $grey-lighter;
+  background-color: $white;
+  height: 50px;
+}
 
 .blockjs-inspector {
+  z-index: 50;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 300px; 
-  box-shadow: 0 0 5px $grey-lighter;
+  width: 300px;
+  margin-top: 50px;
+  box-shadow: 0 0 4px $grey-lighter;
+  background-color: $white;
 
   .empty-tips {
     position: absolute;

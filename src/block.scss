@@ -1,8 +1,69 @@
 @charset "utf-8";
 @import "./font-awesome/scss/fontawesome.scss";
 @import "./font-awesome/scss/solid.scss";
-@import "~bulma/bulma";
+@import "~bulma/sass/utilities/_all";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
 .block-js {
+  .bj-toolbar {
+    padding: 0.5em;
+    margin: 0;
+  }
 
+  .bj-layout {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    z-index: 0;
+
+    .bj-layout-item-default {
+      flex: 1;     
+      height: 5em;
+      margin: 0.5em;
+      background-color: change-color($grey-lighter, $alpha: 0.5);
+    }
+  }
+
+  &.editing {
+    .bj-layout {
+      cursor: pointer;
+
+      .bj-layout-label {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-100%, 0);
+        font-size: 12px;
+        background-color: $warning;
+      }
+      &:hover, &.selected {
+        z-index: 100;
+        box-shadow: 0 0 3px $warning;
+
+        .bj-layout-label {
+          display: block;
+          box-shadow: 0 0 3px $warning;
+        }
+      }
+    }
+  }
+}
+
+
+.blockjs-inspector {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px; 
+  box-shadow: 0 0 5px $grey-lighter;
+
+  .empty-tips {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

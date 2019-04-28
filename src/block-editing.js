@@ -10,6 +10,7 @@ export function registerBlock(id, options) {
   })
   blockMap[id] = options
   Vue.component(id, options.component)
+  Vue.component(`${id}-inspector`, options.inspector)
 }
 
 export function getToolbarItems() {

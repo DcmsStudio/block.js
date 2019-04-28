@@ -28,6 +28,9 @@
 
       .bj-layout-label {
         display: block;
+        padding: 3px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
         box-shadow: 0 0 3px $warning;
       }
     }

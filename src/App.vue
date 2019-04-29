@@ -37,7 +37,7 @@ export default {
     BlockInspector,
   },
   reactiveProvide: {
-    name: 'blockJSConfig',
+    name: 'blockJS',
     include: ['mode', 'isEditing'],
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div class="block-js bj-root">
-    <div class="bj-layout-list">
+    <div class="bj-block-list">
       <component v-for="(block) in blocks"
         :is="block.id"
         :class="{ 'selected': isSelected(block) }"

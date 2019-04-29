@@ -1,6 +1,5 @@
-import './block-editing.scss'
-
 import Vue from 'vue'
+import './block'
 import App from './App.vue'
 
 Vue.config.productionTip = false

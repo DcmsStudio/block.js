@@ -1,15 +1,21 @@
-import defaults from './defaults'
+import uuid from 'uuid'
 import Layout from './Layout.vue'
 import Inspector from './Inspector.vue'
 
-export default function (blockjs) {
-  blockjs.registerBlock(Layout.name, {
-    component: Layout,
-    inspector: Inspector,
-    defaults,
-    toolbar: {
-      icon: 'th-large',
-      tooltip: 'Append a layout',
+function createDefaults() {
+  return {
+    uuid: uuid.v4(),
+    attrs: {
+      itemCount: 3,
     },
-  })
+  }
+}
+
+export default {
+  id: Layout.name,
+  block: Layout,
+  icon: 'th-large',
+  displayName: 'Layout',
+  inspector: Inspector,
+  createDefaults,
 }

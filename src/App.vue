@@ -2,11 +2,11 @@
   <div class="app">
     <div v-if="isEditing" class="bj-toolbar level">
       <div class="level-left">
-        <ToolbarItem v-for="item in toolbarItems"
-          :key="item.id"
+        <ToolbarItem v-for="(item, idx) in toolbarItems"
+          :key="idx"
           :tooltip="item.tooltip"
           :icon="item.icon"
-          @click.native="onClickToolbarItem(item)"/>
+          @click.native="onClickToolbarItem(item.id)"/>
       </div>
     </div>
     <div class="container">
@@ -21,13 +21,10 @@
 </template>
 
 <script>
-import uuid from 'uuid'
-import cloneDeep from 'clone-deep'
-import '@/plugins'
-import { Block } from './block'
+import { getPlugins } from '@/plugins'
+import Block from './Block.vue'
 import ToolbarItem from '@/components/ToolbarItem.vue'
 import BlockInspector from '@/BlockInspector.vue'
-import * as blockEditing from '@/block-editing'
 
 export default {
   name: 'app',
@@ -45,7 +42,11 @@ export default {
       mode: 'editing',
       blocks: [],
       selection: null,
-      toolbarItems: blockEditing.getToolbarItems(),
+      toolbarItems: [{
+        id: 'save',
+        icon: 'save',
+        tooltip: 'Save',
+      }],
     }
   },
   computed: {
@@ -57,19 +58,17 @@ export default {
     onBlockSelect(block) {
       this.selection = block
     },
-    onClickToolbarItem(item) {
-      console.log(item)
-      this.blocks.push({
-        uuid: uuid.v4(),
-        id: item.id,
-        ...cloneDeep(blockEditing.getDefaults(item.id)),
-      })
+    onClickToolbarItem(id) {
+      console.log(id)
+      console.log(getPlugins())
     },
   },
 }
 </script>
 
 <style lang="scss">
+@import "~bulma/sass/utilities/_all";
+
 .app {
   position: absolute;
   width: 100%;
@@ -89,5 +88,18 @@ export default {
     margin: 0 auto;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
   }
+}
+
+.bj-toolbar {
+  z-index: 100;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 4px $grey-lighter;
+  background-color: $white;
+  height: 50px;
+  padding: 0.5em 3em;
 }
 </style>

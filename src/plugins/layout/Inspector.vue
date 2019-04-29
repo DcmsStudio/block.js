@@ -30,6 +30,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bulma/sass/utilities/_all";
+
 .bj-layout-inspector {
 
 }

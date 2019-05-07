@@ -22,6 +22,7 @@ export default {
   right: 0;
   bottom: 0;
   width: 300px;
+  padding-top: 40px;
   box-shadow: 0 0 5px $grey-lighter;
 
   .empty-tips {

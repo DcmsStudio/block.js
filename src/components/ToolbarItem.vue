@@ -1,6 +1,6 @@
 <template>
-  <b-tooltip :label="tooltip" position="is-bottom">
-    <b-button type="is-light">
+  <b-tooltip :label="tooltip" :position="tooltipPosition" type="is-info">
+    <b-button type="is-white">
       <b-icon pack="fas" :icon="icon" size="is-small"></b-icon>
     </b-button>
   </b-tooltip>
@@ -11,6 +11,10 @@ export default {
   props: {
     tooltip: String,
     icon: String,
+    tooltipPosition: {
+      type: String,
+      default: 'is-bottom',
+    },
   },
 }
 </script>

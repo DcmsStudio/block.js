@@ -8,6 +8,10 @@
           :icon="item.icon"
           @click.native="onClickToolbarItem(item.id)"/>
       </div>
+      <div class="level-center">
+
+      </div>
+      <div class="level-right"></div>
     </div>
     <div class="container">
       <Block :mode="mode"
@@ -16,12 +20,20 @@
         :selection="selection"
         @blockSelect="onBlockSelect" />
     </div>
+    <div class="bj-toolbar-side">
+      <ToolbarItem v-for="(item, idx) in sideItems"
+          :key="idx"
+          :tooltip="item.displayName"
+          tooltipPosition="is-right"
+          :icon="item.icon"
+          @click.native="onClickToolbarItem(item.id)" />
+    </div>
     <BlockInspector :data="selection" />
   </div>
 </template>
 
 <script>
-import { getPlugins } from '@/plugins'
+import * as pluginApi from '@/plugins'
 import Block from './Block.vue'
 import ToolbarItem from '@/components/ToolbarItem.vue'
 import BlockInspector from '@/BlockInspector.vue'
@@ -35,7 +47,7 @@ export default {
   },
   reactiveProvide: {
     name: 'blockJS',
-    include: ['mode', 'isEditing'],
+    include: ['mode', 'isEditing', 'selection'],
   },
   data() {
     return {
@@ -47,6 +59,11 @@ export default {
         icon: 'save',
         tooltip: 'Save',
       }],
+      sideItems: pluginApi.getPlugins().map(item => ({
+        id: item.id,
+        displayName: item.displayName,
+        icon: item.icon,
+      })),
     }
   },
   computed: {
@@ -59,8 +76,10 @@ export default {
       this.selection = block
     },
     onClickToolbarItem(id) {
-      console.log(id)
-      console.log(getPlugins())
+      const plugin = pluginApi.getPluginById(id)
+      const block = plugin.createDefaults()
+      this.blocks.push(block)
+      this.selection = block
     },
   },
 }
@@ -75,8 +94,9 @@ export default {
   top: 0;
   left: 0;
   min-height: 100%;
-  padding-right: 300px;
+  padding-right: 360px;
   padding-top: 60px;
+  padding-left: 60px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -99,7 +119,24 @@ export default {
   right: 0;
   box-shadow: 0 0 4px $grey-lighter;
   background-color: $white;
-  height: 50px;
-  padding: 0.5em 3em;
+  padding: 0em 3em;
+  height: 40px;
+  margin-bottom: 0 !important;
+}
+
+.bj-toolbar-side {
+  z-index: 100;
+  margin: 0;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  height: 500px;
+  width: 40px;
+  box-shadow: 0 0 4px $grey-lighter;
+  background-color: $white;
+  padding: 0.4em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

@@ -15,7 +15,8 @@
     "core-js": "^2.6.5",
     "uuid": "^3.3.2",
     "vue": "^2.6.10",
-    "vue-reactive-provide": "^0.3.0"
+    "vue-reactive-provide": "^0.3.0",
+    "vuedraggable": "^2.20.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

@@ -4,10 +4,12 @@ import Inspector from './Inspector.vue'
 
 function createDefaults() {
   return {
+    id: Layout.name,
     uuid: uuid.v4(),
     attrs: {
       itemCount: 3,
     },
+    style: {},
   }
 }
 

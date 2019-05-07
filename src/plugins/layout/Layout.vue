@@ -1,5 +1,5 @@
 <template>
-  <div class="bj-layout bj-inspectable" :data-uuid="data.uuid">
+  <div class="bj-layout bj-inspectable" :class="{ selected: isSelected }" :data-uuid="data.uuid">
     <template v-if="isShowDefaults">
       <div v-for="n in data.attrs.itemCount" :key="n" class="bj-layout-item-default"></div>
     </template>
@@ -25,6 +25,9 @@ export default {
   computed: {
     isShowDefaults() {
       return !this.items || !Array.isArray(this.items) || this.items.length === 0
+    },
+    isSelected() {
+      return this.blockJS.selection.uuid === this.data.uuid
     },
   },
 }

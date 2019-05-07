@@ -17,4 +17,8 @@ export function getPlugins() {
   return plugins
 }
 
+export function getPluginById(id) {
+  return pluginMap[id]
+}
+
 registerPlugin(layoutPlugin)

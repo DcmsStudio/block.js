@@ -1,6 +1,8 @@
 <template>
   <div class="bj-block-side-tools">
-    <div class="bj-block-label">Layout</div>
+    <div class="bj-block-label draggable-handle">
+      <i class="fas fa-grip-vertical"></i>&nbsp;Layout
+    </div>
     <div class="bj-block-label bj-block-close">
       <b-icon
           pack="fas"
@@ -43,6 +45,10 @@ export default {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     background-color: $warning;
+
+    &.draggable-handle {
+      cursor: move;
+    }
   }
 }
 </style>

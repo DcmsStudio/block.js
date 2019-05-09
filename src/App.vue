@@ -18,15 +18,11 @@
         :class="{ editing: isEditing }"
         :blocks="blocks"
         :selection="selection"
-        @blockSelect="onBlockSelect" />
-    </div>
-    <div class="bj-toolbar-side">
-      <ToolbarItem v-for="(item, idx) in sideItems"
-          :key="idx"
-          :tooltip="item.displayName"
-          tooltipPosition="is-right"
-          :icon="item.icon"
-          @click.native="onClickToolbarItem(item.id)" />
+        :onChange="onBlocksChange"
+        :onClickBlock="onBlockSelect"/>
+      <div class="bj-buttons">
+        <BlockTypeList @clickItem="onNewBlock" />
+      </div>
     </div>
     <BlockInspector :data="selection" />
   </div>
@@ -36,6 +32,7 @@
 import * as pluginApi from '@/plugins'
 import Block from './Block.vue'
 import ToolbarItem from '@/components/ToolbarItem.vue'
+import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockInspector from '@/BlockInspector.vue'
 
 export default {
@@ -44,6 +41,7 @@ export default {
     ToolbarItem,
     Block,
     BlockInspector,
+    BlockTypeList,
   },
   reactiveProvide: {
     name: 'blockJS',
@@ -59,11 +57,6 @@ export default {
         icon: 'save',
         tooltip: 'Save',
       }],
-      sideItems: pluginApi.getPlugins().map(item => ({
-        id: item.id,
-        displayName: item.displayName,
-        icon: item.icon,
-      })),
     }
   },
   computed: {
@@ -72,10 +65,17 @@ export default {
     },
   },
   methods: {
+    onBlocksChange(e) {
+      if (e.added) {
+        this.selection = e.added.element
+      } else if (e.removed && e.removed.element === this.selection) {
+        this.selection = null
+      }
+    },
     onBlockSelect(block) {
       this.selection = block
     },
-    onClickToolbarItem(id) {
+    onNewBlock({ id }) {
       const plugin = pluginApi.getPluginById(id)
       const block = plugin.createDefaults()
       this.blocks.push(block)
@@ -124,19 +124,11 @@ export default {
   margin-bottom: 0 !important;
 }
 
-.bj-toolbar-side {
-  z-index: 100;
-  margin: 0;
-  position: fixed;
-  top: 100px;
-  left: 0;
-  height: 500px;
-  width: 40px;
-  box-shadow: 0 0 4px $grey-lighter;
-  background-color: $white;
-  padding: 0.4em 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.bj-buttons {
+  width: 100%;
+
+  .bj-block-type-list {
+    background-color: $white-ter;
+  }
 }
 </style>

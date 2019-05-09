@@ -17,7 +17,7 @@ import BaseInspector from '@/components/BaseInspector.vue'
 
 export default {
   components: {
-    BaseInspector
+    BaseInspector,
   },
   props: {
     data: Object,

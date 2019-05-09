@@ -27,7 +27,7 @@ export default {
       return !this.items || !Array.isArray(this.items) || this.items.length === 0
     },
     isSelected() {
-      return this.blockJS.selection.uuid === this.data.uuid
+      return this.blockJS.selection && this.blockJS.selection.uuid === this.data.uuid
     },
   },
 }
@@ -41,7 +41,6 @@ export default {
   display: flex;
   flex-direction: row;
   z-index: 0;
-  cursor: pointer;
 
   .bj-layout-item-default {
     flex: 1;

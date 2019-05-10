@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import layoutPlugin from './layout'
-import columnsPlugin from './columns'
+// import columnsPlugin from './columns'
 
 const plugins = []
 const pluginMap = {}
@@ -23,4 +23,4 @@ export function getPluginById(id) {
 }
 
 registerPlugin(layoutPlugin)
-registerPlugin(columnsPlugin)
+// registerPlugin(columnsPlugin)

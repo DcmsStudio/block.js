@@ -18,8 +18,7 @@
         :class="{ editing: isEditing }"
         :blocks="blocks"
         :selection="selection"
-        :onChange="onBlocksChange"
-        :onClickBlock="onBlockSelect"/>
+        :onChange="onBlocksChange"/>
       <div v-else class="no-blocks-tip">Empty, try add block with blow tools.</div>
       <div class="bj-buttons">
         <BlockTypeList @clickItem="onNewBlock" />
@@ -46,11 +45,20 @@ export default {
   },
   reactiveProvide: {
     name: 'blockJS',
-    include: ['mode', 'isEditing', 'selection'],
+    include: [
+      'mode',
+      'hoverUuid',
+      'setHoverUuid',
+      'isEditing',
+      'selection',
+      'createBlockDefaults',
+      'onClickBlock',
+    ],
   },
   data() {
     return {
       mode: 'editing',
+      hoverUuid: '',
       blocks: [],
       selection: null,
       toolbarItems: [{
@@ -73,14 +81,20 @@ export default {
         this.selection = null
       }
     },
-    onBlockSelect(block) {
+    onClickBlock(block) {
       this.selection = block
     },
     onNewBlock({ id }) {
-      const plugin = pluginApi.getPluginById(id)
-      const block = plugin.createDefaults()
+      const block = this.createBlockDefaults(id)
       this.blocks.push(block)
       this.selection = block
+    },
+    createBlockDefaults(id) {
+      const plugin = pluginApi.getPluginById(id)
+      return plugin.createDefaults()
+    },
+    setHoverUuid(uuid) {
+      this.hoverUuid = uuid
     },
   },
 }
@@ -96,7 +110,7 @@ export default {
   left: 0;
   min-height: 100%;
   padding-right: 360px;
-  padding-top: 60px;
+  padding-top: 80px;
   padding-left: 60px;
   display: flex;
   flex-direction: row;
@@ -140,7 +154,6 @@ export default {
   .bj-block-type-list {
     margin: 5px 0;
     padding: 0 5px;
-    background-color: $white-ter;
   }
 }
 </style>

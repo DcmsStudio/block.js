@@ -13,7 +13,7 @@
         :is="block.id"
         :key="block.uuid"
         :data="block"
-        @click.native="onClickBlock(block)"/>
+        :level="0"/>
     </Draggable>
     <template v-else>
       <component v-for="(block) in blocks"
@@ -36,7 +36,6 @@ export default {
     selection: Object,
     blocks: Array,
     onChange: Function,
-    onClickBlock: Function,
   },
 }
 </script>

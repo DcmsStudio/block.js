@@ -1,7 +1,11 @@
 <template>
   <div class="bj-block-component"
-  :class="{ selected: isSelected, 'any-selected': anySelected }"
-  :data-uuid="data.uuid">
+  :class="{ selected: isSelected, hover: isHoverSelf  }"
+  :data-uuid="data.uuid"
+  @mouseenter="onMouseEnter"
+  @mouseleave="onMouseOut"
+  @mouseover="onMouseOver"
+  @click.stop="blockJS.onClickBlock(data)">
     <div class="bj-block-content">
       <slot />
     </div>
@@ -26,8 +30,24 @@ export default {
     isSelected() {
       return this.blockJS.selection && this.blockJS.selection.uuid === this.data.uuid
     },
-    anySelected() {
-      return !!this.blockJS.selection
+    isHoverSelf() {
+      return this.blockJS.hoverUuid === this.data.uuid
+    },
+  },
+  methods: {
+    onMouseEnter() {
+      this.blockJS.setHoverUuid(this.data.uuid)
+    },
+    onMouseOver(e) {
+      e.stopPropagation()
+      if (this.blockJS.hoverUuid !== this.data.uuid) {
+        this.blockJS.setHoverUuid(this.data.uuid)
+      }
+    },
+    onMouseOut() {
+      if (this.blockJS.hoverUuid === this.data.uuid) {
+        this.blockJS.setHoverUuid('')
+      }
     },
   },
 }
@@ -43,34 +63,33 @@ export default {
     display: block;
     content: ' ';
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
     border: 2px solid transparent;
   }
 
-  &:hover {
+  &.hover {
     z-index: 100;
 
     &::before {
-      border: 2px solid lighten($warning, 20%);
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 4px solid lighten($orange, 30%);
     }
-  }
-
-  &.any-selected {
-    opacity: 0.3;
   }
 
   &.selected {
-    opacity: 1;
     z-index: 100;
 
     &::before {
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
       border: 2px solid $warning;
     }
 
-    .bj-block-editing-tools {
+    > .bj-block-editing-tools {
       display: flex;
     }
   }

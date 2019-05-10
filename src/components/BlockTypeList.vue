@@ -33,9 +33,14 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 .bj-block-type-list {
+  width: 100%;
+  display: block;
+  background-color: $white-ter;
+  user-select: none;
+
   .icon {
     padding: 20px;
-    cursor: pointer;
+    user-select: none;
 
     &:hover {
       color: $info;

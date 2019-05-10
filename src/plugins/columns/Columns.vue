@@ -1,9 +1,10 @@
 <template>
   <BlockComponent class="bj-columns" :data="data" :editingToolsStyle="editingToolsStyle">
     <div class="columns">
-      <div v-for="n in data.attrs.columns"  :key="n" class="column">
-        <component v-if="data.items[n]" :is="data.items[n].id" :data="data.items[n]" />
-        <BlockPlaceholder v-else :index="n" />
+      <div v-for="(_, index) in data.attrs.columns"  :key="index" class="column">
+        <component v-if="data.items[index]"
+          :is="data.items[index].id" :data="data.items[index]" :level="level+1"/>
+        <BlockPlaceholder v-else :index="index" :parentData="data"/>
       </div>
     </div>
   </BlockComponent>
@@ -22,6 +23,7 @@ export default {
   inject: ['blockJS'],
   props: {
     data: Object,
+    level: Number,
   },
   data() {
     return {

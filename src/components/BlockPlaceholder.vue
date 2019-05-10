@@ -1,15 +1,32 @@
 <template>
   <div class="bj-block-placeholder" :class="{ 'odd': index % 2 == 1 }">
-    empty
+    <BlockDropdown @select="onBlockTypeSelect">
+      <div class="btn-add-block"><b-icon icon="plus" size="is-small"></b-icon></div>
+    </BlockDropdown>
   </div>
 </template>
 
 <script>
+import BlockDropdown from '@/components/BlockDropdown.vue'
+
 export default {
+  components: {
+    BlockDropdown,
+  },
+  inject: ['blockJS'],
   props: {
+    parentData: Object,
     index: {
       type: Number,
       default: 0,
+    },
+  },
+  methods: {
+    onBlockTypeSelect(item) {
+      const block = this.blockJS.createBlockDefaults(item.id)
+      const { items } = this.parentData
+      items[this.index] = block
+      this.parentData.items = items.slice(0)
     },
   },
 }
@@ -27,6 +44,19 @@ export default {
 
   &.odd {
     background-color: $white-ter;
+  }
+
+  .btn-add-block {
+    user-select: none;
+    font-size: 10px;
+    color: $grey-light;
+    border: 2px dashed $grey-lighter;
+    border-radius: 5px;
+
+    &:hover {
+      color: $info;
+      border: 2px dashed $info;
+    }
   }
 }
 </style>

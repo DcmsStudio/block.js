@@ -1,9 +1,12 @@
 <template>
   <BlockComponent :data="data">
     <div class="bj-layout">
-      <template v-for="n in data.attrs.itemCount">
-        <component v-if="data.items[n]" :key="n" :is="data.items[n].id" :data="data.items[n]" />
-        <BlockPlaceholder v-else :key="n" :index="n" />
+      <template v-for="(_, index) in data.attrs.itemCount">
+        <component v-if="data.items[index]"
+          class="bj-layout-item"
+          :key="index" :is="data.items[index].id" :data="data.items[index]"
+          :level="level+1" />
+        <BlockPlaceholder v-else :key="index" :index="index" :parentData="data" />
       </template>
     </div>
   </BlockComponent>
@@ -22,6 +25,7 @@ export default {
   inject: ['blockJS'],
   props: {
     data: Object,
+    level: Number,
   },
 }
 </script>
@@ -34,5 +38,9 @@ export default {
   display: flex;
   flex-direction: row;
   z-index: 0;
+
+  > .bj-layout-item {
+    flex: 1;
+  }
 }
 </style>

@@ -14,12 +14,13 @@
       <div class="level-right"></div>
     </div>
     <div class="container">
-      <Block :mode="mode"
+      <Block v-if="blocks && blocks.length > 0" :mode="mode"
         :class="{ editing: isEditing }"
         :blocks="blocks"
         :selection="selection"
         :onChange="onBlocksChange"
         :onClickBlock="onBlockSelect"/>
+      <div v-else class="no-blocks-tip">Empty, try add block with blow tools.</div>
       <div class="bj-buttons">
         <BlockTypeList @clickItem="onNewBlock" />
       </div>
@@ -124,10 +125,21 @@ export default {
   margin-bottom: 0 !important;
 }
 
+.no-blocks-tip {
+  padding: 20px;
+  text-align: center;
+  color: $grey;
+  margin-top: 30px;
+}
+
 .bj-buttons {
   width: 100%;
+  margin-top: 30px;
+
 
   .bj-block-type-list {
+    margin: 5px 0;
+    padding: 0 5px;
     background-color: $white-ter;
   }
 }

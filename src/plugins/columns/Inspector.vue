@@ -1,9 +1,9 @@
 <template>
   <BaseInspector :data="data">
-    <NumberField label="Item Count"
-      min="1"
-      max="10"
-      v-model="data.attrs.itemCount" />
+    <NumberField label="Columns"
+      :min="1"
+      :max="12"
+      v-model="data.attrs.columns" />
   </BaseInspector>
 </template>
 

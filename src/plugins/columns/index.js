@@ -1,13 +1,13 @@
 import uuid from 'uuid'
-import Layout from './Layout.vue'
+import Columns from './Columns.vue'
 import Inspector from './Inspector.vue'
 
 function createDefaults() {
   return {
-    id: Layout.name,
+    id: Columns.name,
     uuid: uuid.v4(),
     attrs: {
-      itemCount: 3,
+      columns: 3,
     },
     style: {},
     items: [],
@@ -15,10 +15,10 @@ function createDefaults() {
 }
 
 export default {
-  id: Layout.name,
-  block: Layout,
-  icon: 'th-large',
-  displayName: 'Layout',
+  id: Columns.name,
+  block: Columns,
+  icon: 'columns',
+  displayName: 'Columns',
   inspector: Inspector,
   createDefaults,
 }

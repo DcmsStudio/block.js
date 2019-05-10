@@ -51,37 +51,4 @@ export default {
 .block-js-ghost {
   opacity: 0.5;
 }
-
-.bj-inspectable {
-  &::before {
-    display: block;
-    content: ' ';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border: 2px solid transparent;
-  }
-}
-
-.bj-inspectable:hover {
-  z-index: 100;
-
-  &::before {
-    border: 2px solid lighten($warning, 20%);
-  }
-}
-
-.bj-inspectable.selected {
-  z-index: 100;
-
-  &::before {
-    border: 2px solid $warning;
-  }
-
-  .bj-block-side-tools {
-    display: flex;
-  }
-}
 </style>

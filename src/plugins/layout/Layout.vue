@@ -1,34 +1,27 @@
 <template>
-  <div class="bj-layout bj-inspectable" :class="{ selected: isSelected }" :data-uuid="data.uuid">
-    <template v-if="isShowDefaults">
-      <div v-for="n in data.attrs.itemCount" :key="n" class="bj-layout-item-default"></div>
-    </template>
-    <template v-else>
-      <component v-if="items[n]" :is="items[n].id" :data="items[n]" />
-    </template>
-    <BlockSideTools v-if="blockJS.isEditing" :block="data" />
-  </div>
+  <BlockComponent :data="data">
+    <div class="bj-layout">
+      <template v-for="n in data.attrs.itemCount">
+        <component v-if="data.items[n]" :key="n" :is="data.items[n].id" :data="data.items[n]" />
+        <BlockPlaceholder v-else :key="n" :index="n" />
+      </template>
+    </div>
+  </BlockComponent>
 </template>
 
 <script>
-import BlockSideTools from '@/components/BlockSideTools.vue'
+import BlockComponent from '@/components/BlockComponent.vue'
+import BlockPlaceholder from '@/components/BlockPlaceholder.vue'
 
 export default {
   name: 'bj-layout',
   components: {
-    BlockSideTools,
+    BlockComponent,
+    BlockPlaceholder,
   },
   inject: ['blockJS'],
   props: {
     data: Object,
-  },
-  computed: {
-    isShowDefaults() {
-      return !this.items || !Array.isArray(this.items) || this.items.length === 0
-    },
-    isSelected() {
-      return this.blockJS.selection && this.blockJS.selection.uuid === this.data.uuid
-    },
   },
 }
 </script>
@@ -41,12 +34,5 @@ export default {
   display: flex;
   flex-direction: row;
   z-index: 0;
-
-  .bj-layout-item-default {
-    flex: 1;
-    height: 5em;
-    border: 2px dashed $grey-lighter;
-    background-color: change-color($grey-lighter, $alpha: 0.5);
-  }
 }
 </style>

@@ -6,7 +6,7 @@
           class="bj-layout-item"
           :key="index" :is="data.items[index].id" :data="data.items[index]"
           :level="level+1" />
-        <BlockPlaceholder v-else :key="index" :index="index" :parentData="data" />
+        <BlockPlaceholder v-else :key="index" :index="index" :level="level" :parentData="data" />
       </template>
     </div>
   </BlockComponent>

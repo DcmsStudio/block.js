@@ -1,5 +1,5 @@
 <template>
-  <div class="bj-block-placeholder" :class="{ 'odd': index % 2 == 1 }">
+  <div class="bj-block-placeholder" :class="{ 'odd': isOdd }">
     <BlockDropdown @select="onBlockTypeSelect">
       <div class="btn-add-block"><b-icon icon="plus" size="is-small"></b-icon></div>
     </BlockDropdown>
@@ -16,9 +16,18 @@ export default {
   inject: ['blockJS'],
   props: {
     parentData: Object,
+    level: {
+      type: Number,
+      default: 0,
+    },
     index: {
       type: Number,
       default: 0,
+    },
+  },
+  computed: {
+    isOdd() {
+      return this.index % 2 === 1
     },
   },
   methods: {

@@ -4,7 +4,7 @@
       <div v-for="(_, index) in data.attrs.columns"  :key="index" class="column">
         <component v-if="data.items[index]"
           :is="data.items[index].id" :data="data.items[index]" :level="level+1"/>
-        <BlockPlaceholder v-else :index="index" :parentData="data"/>
+        <BlockPlaceholder v-else :index="index" :level="level" :parentData="data"/>
       </div>
     </div>
   </BlockComponent>

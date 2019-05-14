@@ -30,6 +30,7 @@
 
 <script>
 import * as pluginApi from '@/plugins'
+import { styleDefaults } from './css-editor'
 import Block from './Block.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockInspector from '@/BlockInspector.vue'
@@ -89,7 +90,12 @@ export default {
     },
     createBlockDefaults(id) {
       const plugin = pluginApi.getPluginById(id)
-      return plugin.createDefaults()
+      const block = plugin.createDefaults()
+      block.style = block.style || {}
+      plugin.styleList.forEach(key => {
+        block.style[key] = styleDefaults[key]
+      })
+      return block
     },
     setHoverUuid(uuid) {
       this.hoverUuid = uuid

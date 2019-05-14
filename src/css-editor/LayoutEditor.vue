@@ -1,10 +1,10 @@
 <template>
   <div class="bj-css-layout">
     <div class="css-title">{{ label }}</div>
-    <UnitField label="top" unit="em"  />
-    <UnitField label="right" unit="em" />
-    <UnitField label="bottom" unit="em" />
-    <UnitField label="left" unit="em" />
+    <UnitField label="top" v-model="value.top"  />
+    <UnitField label="right" v-model="value.right"/>
+    <UnitField label="bottom" v-model="value.bottom"/>
+    <UnitField label="left" v-model="value.left" />
   </div>
 </template>
 
@@ -12,11 +12,13 @@
 import UnitField from './UnitField.vue'
 
 export default {
+  name: 'css-layout',
   components: {
     UnitField,
   },
   props: {
     label: String,
+    value: Object,
   },
 }
 </script>

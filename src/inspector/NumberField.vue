@@ -1,7 +1,11 @@
 <template>
-  <b-field class="bj-inspector-number-field" :label="label" custom-class="is-small" horizontal>
+  <b-field class="bj-inspector-number-field"
+    :label="label"
+    custom-class="is-small"
+    horizontal>
     <b-numberinput controls-position="compact"
       size="is-small"
+      type="is-light"
       :min="min"
       :max="max"
       :value="value"

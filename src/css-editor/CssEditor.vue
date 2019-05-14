@@ -6,7 +6,7 @@
       :class="{ odd: index % 2 === 1 }"
       :label="item"
       :index="index"
-      v-model="styleData[item]" />
+      v-model="styleData[item]"/>
   </div>
 </template>
 
@@ -19,6 +19,8 @@ export default {
     styleList: Array,
     styleData: Object,
   },
+  methods: {
+  }
 }
 </script>
 

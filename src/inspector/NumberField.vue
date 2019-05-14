@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label" custom-class="is-small">
+  <b-field class="bj-inspector-number-field" :label="label" custom-class="is-small" horizontal>
     <b-numberinput controls-position="compact"
       size="is-small"
       :min="min"
@@ -21,5 +21,11 @@ export default {
 </script>
 
 <style lang="scss">
-
+.bj-inspector-number-field {
+  .field-label {
+    margin-right: 0;
+    min-width: 80px;
+    text-align: left;
+  }
+}
 </style>

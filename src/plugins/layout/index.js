@@ -8,6 +8,7 @@ function createDefaults() {
     uuid: uuid.v4(),
     attrs: {
       itemCount: 3,
+      direction: 'row',
     },
     style: {},
     items: [],
@@ -20,5 +21,10 @@ export default {
   icon: 'th-large',
   displayName: 'Layout',
   inspector: Inspector,
+  styleList: [
+    'margin',
+    'padding',
+    // 'border',
+  ],
   createDefaults,
 }

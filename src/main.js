@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './block'
+import './css-editor'
 import App from './App.vue'
 
 Vue.config.productionTip = false

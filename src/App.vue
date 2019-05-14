@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div v-if="isEditing" class="bj-toolbar level">
+    <!-- <div v-if="isEditing" class="bj-toolbar level">
       <div class="level-left">
         <ToolbarItem v-for="(item, idx) in toolbarItems"
           :key="idx"
@@ -12,7 +12,7 @@
 
       </div>
       <div class="level-right"></div>
-    </div>
+    </div> -->
     <div class="container">
       <Block v-if="blocks && blocks.length > 0" :mode="mode"
         :class="{ editing: isEditing }"
@@ -31,14 +31,12 @@
 <script>
 import * as pluginApi from '@/plugins'
 import Block from './Block.vue'
-import ToolbarItem from '@/components/ToolbarItem.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockInspector from '@/BlockInspector.vue'
 
 export default {
   name: 'app',
   components: {
-    ToolbarItem,
     Block,
     BlockInspector,
     BlockTypeList,
@@ -110,7 +108,7 @@ export default {
   left: 0;
   min-height: 100%;
   padding-right: 360px;
-  padding-top: 80px;
+  padding-top: 40px;
   padding-left: 60px;
   display: flex;
   flex-direction: row;
@@ -121,7 +119,7 @@ export default {
     max-width: 800px;
     min-height: 100%;
     margin: 0 auto;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
 }
 

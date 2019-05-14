@@ -11,6 +11,9 @@ export interface BlockPlugin {
   // display name
   displayName: string
 
+  // the adaptable properties of css style
+  styleList: string[]
+
   //
   createDefaults(): any
 }

@@ -1,23 +1,20 @@
 <template>
   <div v-show="visible" class="bj-block-editing-tools" :style="style">
-    <div class="bj-block-label draggable-handle">
-      <b-icon icon="arrows" size="is-small"></b-icon>
+    <div class="bj-block-label">
+      <b-icon :icon="icon" />
     </div>
     <div class="bj-block-label bj-block-close">
-      <b-icon icon="trash-alt" size="is-small"></b-icon>
+      <b-icon icon="trash-alt" size="is-small" />
     </div>
   </div>
 </template>
 
 <script>
+import * as pluginApi from '@/plugins'
+
 export default {
   props: {
     selection: Object,
-  },
-  watch: {
-    selection() {
-      this.updateTools()
-    },
   },
   data() {
     return {
@@ -25,8 +22,22 @@ export default {
       style: {},
     }
   },
+  computed: {
+    icon() {
+      if (!this.selection) {
+        return null
+      }
+      return pluginApi.getPluginById(this.selection.id).icon
+    },
+  },
+  watch: {
+    selection() {
+      this.updateTools()
+    },
+  },
   mounted() {
     window.addEventListener('resize', () => this.updateTools())
+    this.updateTools()
   },
   methods: {
     updateTools() {

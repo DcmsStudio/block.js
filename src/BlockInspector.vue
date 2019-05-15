@@ -30,5 +30,19 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .field.horizontal {
+    display: flex;
+    align-items: center;
+
+    .field-label, .label {
+      margin-right: 0;
+      min-width: 80px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+  }
 }
 </style>

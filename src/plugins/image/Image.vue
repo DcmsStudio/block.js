@@ -1,0 +1,47 @@
+<template>
+<BlockComponent class="bj-image" :data="data" :customStyleTarget="true">
+  <figure class="image" :class="data.attrs.class" :style="blockJS.toStyle(data.style)">
+    <img v-if="data.attrs.src" :src="data.attrs.src">
+    <b-icon v-else class="placeholder" icon="image" />
+  </figure>
+</BlockComponent>
+</template>
+
+<script>
+import BlockComponent from '@/components/BlockComponent.vue'
+
+export default {
+  name: 'bj-image',
+  components: {
+    BlockComponent,
+  },
+  inject: ['blockJS'],
+  props: {
+    data: Object,
+  },
+}
+</script>
+
+<style lang="scss">
+@import "~bulma/sass/utilities/_all";
+
+.bj-image {
+  .image {
+    position: relative;
+    background-color: $grey-lighter;
+    width: 100%;
+
+    > img {
+      object-fit: cover;
+    }
+
+    .placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $grey-light;
+    }
+  }
+}
+</style>

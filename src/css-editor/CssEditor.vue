@@ -6,7 +6,11 @@
       :class="{ odd: index % 2 === 1 }"
       :label="item"
       :index="index"
-      v-model="styleData[item]"/>
+      :value="styleData[item]"
+      @input="$emit('change', {
+        key: item,
+        value: $event,
+      })"/>
   </div>
 </template>
 
@@ -30,6 +34,10 @@ export default {
 
   > .odd {
     background-color: $white-ter;
+  }
+
+  > .field {
+    padding: 0.25em 1em;
   }
 }
 </style>

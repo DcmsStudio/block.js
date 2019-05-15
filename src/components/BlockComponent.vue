@@ -1,25 +1,21 @@
 <template>
   <div class="bj-block-component"
   :class="{ selected: isSelected, hover: isHoverSelf  }"
-  :data-uuid="data.uuid"
+  :uuid="data.uuid"
   @mouseenter="onMouseEnter"
   @mouseleave="onMouseOut"
   @mouseover="onMouseOver"
-  @click.stop="blockJS.onClickBlock(data)">
-    <div class="bj-block-content" :style="customStyleTarget ? null : blockJS.toStyle(data.style)">
-      <slot />
-    </div>
-    <BlockEditingTools v-if="blockJS.isEditing" :block="data" />
+  @click.stop="blockJS.onClickBlock(data)"
+  :style="customStyleTarget ? null : blockJS.toStyle(data.style)">
+    <slot />
   </div>
 </template>
 
 <script>
-import BlockEditingTools from '@/components/BlockEditingTools.vue'
 
 export default {
   name: 'bj-block-component',
   components: {
-    BlockEditingTools,
   },
   inject: ['blockJS'],
   props: {
@@ -62,6 +58,10 @@ export default {
 .bj-block-component {
   position: relative;
 
+  & > * {
+    z-index: 100;
+  }
+
   &::before {
     display: block;
     content: ' ';
@@ -70,7 +70,7 @@ export default {
   }
 
   &.hover {
-    z-index: 100;
+    z-index: 300;
 
     &::before {
       top: -4px;
@@ -90,10 +90,7 @@ export default {
       right: -2px;
       bottom: -2px;
       border: 2px solid $warning;
-    }
-
-    > .bj-block-editing-tools {
-      display: flex;
+      background-color: none;
     }
   }
 }

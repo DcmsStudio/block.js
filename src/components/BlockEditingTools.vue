@@ -1,5 +1,5 @@
 <template>
-  <div class="bj-block-editing-tools">
+  <div v-show="visible" class="bj-block-editing-tools" :style="style">
     <div class="bj-block-label draggable-handle">
       <b-icon icon="arrows" size="is-small"></b-icon>
     </div>
@@ -12,7 +12,38 @@
 <script>
 export default {
   props: {
-    block: Object,
+    selection: Object,
+  },
+  watch: {
+    selection() {
+      this.updateTools()
+    },
+  },
+  data() {
+    return {
+      visible: false,
+      style: {},
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', () => this.updateTools())
+  },
+  methods: {
+    updateTools() {
+      this.visible = false
+      if (!this.selection) {
+        return
+      }
+      this.$nextTick(() => {
+        this.visible = true
+        const selectedEl = document.querySelector('.bj-block-component.selected')
+        const toolsParentEl = this.$el.parentNode
+        const toolsParentRect = toolsParentEl.getBoundingClientRect()
+        const selectedRect = selectedEl.getBoundingClientRect()
+        this.style.top = `${selectedRect.top - toolsParentRect.top}px`
+        this.style.left = `${selectedRect.left - toolsParentRect.left}px`
+      })
+    },
   },
 }
 </script>
@@ -21,12 +52,12 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 .bj-block-editing-tools {
-  display: none;
   position: absolute;
   top: 0;
   left: 0px;
   transform: translate(0, -100%);
   font-size: 12px;
+  display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;

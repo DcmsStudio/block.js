@@ -25,6 +25,7 @@ export default {
     'margin',
     'padding',
     // 'border',
+    'alignItems',
   ],
   createDefaults,
 }

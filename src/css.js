@@ -18,7 +18,18 @@ export const styleDefaults = {
   margin: cloneDeep(boxDefaults),
   padding: cloneDeep(boxDefaults),
   height: cloneDeep(unitDefaults),
+  alignItems: 'flex-start',
 }
+
+export const styleOptions = {
+  alignItems: [
+    'flex-start',
+    'center',
+    'flex-end',
+  ],
+}
+
+export const createUnit = (value = 0, unit = 'em') => ({ value, unit })
 
 export const toStyle = (styleData) => {
   const style = {}

@@ -1,8 +1,5 @@
 <template>
-<BlockComponent :data="data" :customStyleTarget="true">
-  <div class="bj-empty" :style="blockJS.toStyle(data.style)">
-    Empty
-  </div>
+<BlockComponent :data="data">
 </BlockComponent>
 </template>
 
@@ -10,7 +7,7 @@
 import BlockComponent from '@/components/BlockComponent.vue'
 
 export default {
-  name: 'bj-empty',
+  name: 'bj-component',
   components: {
     BlockComponent,
   },
@@ -23,13 +20,4 @@ export default {
 
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
-
-.bj-empty {
-  min-height: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  color: $grey-lighter;
-}
 </style>

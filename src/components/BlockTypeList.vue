@@ -41,6 +41,7 @@ export default {
   .icon {
     padding: 20px;
     user-select: none;
+    color: $grey;
 
     &:hover {
       color: $info;

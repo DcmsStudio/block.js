@@ -1,6 +1,6 @@
 <template>
-  <BlockComponent :data="data">
-    <div class="bj-layout">
+  <BlockComponent :data="data" :customStyleTarget="true">
+    <div class="bj-layout" :style="blockJS.toStyle(data.style)">
       <template v-for="(_, index) in data.attrs.itemCount">
         <component v-if="data.items[index]"
           class="bj-layout-item"

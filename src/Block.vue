@@ -1,26 +1,9 @@
 <template>
   <div class="block-js bj-root">
-    <Draggable v-if="blockJS.isEditing"
-      class="block-js-draggable"
-      :list="blocks"
-      :sortable="true"
-      tag="div"
-      group="block"
-      ghost-class="block-js-ghost"
-      handle=".draggable-handle"
-      @change="onChange">
-      <component v-for="(block) in blocks"
-        :is="block.id"
-        :key="block.uuid"
-        :data="block"
-        :level="0"/>
-    </Draggable>
-    <template v-else>
-      <component v-for="(block) in blocks"
-        :is="block.id"
-        :key="block.uuid"
-        :data="block" />
-    </template>
+    <component v-for="(block) in blocks"
+      :is="block.id"
+      :key="block.uuid"
+      :data="block" />
   </div>
 </template>
 

@@ -14,7 +14,8 @@
         <b-icon icon="file-code" size="small" /> Style
       </p>
       <div class="panel-block">
-        <css-editor :styleList="styleList" :styleData="data.style" />
+        <css-editor :styleList="styleList" :styleData="data.style"
+          @change="blockJS.onStyleChange($event)" />
       </div>
     </div>
   </div>
@@ -24,6 +25,7 @@
 import * as pluginApi from '@/plugins'
 
 export default {
+  inject: ['blockJS'],
   props: {
     data: Object,
     attrs: {
@@ -87,7 +89,7 @@ export default {
     border-right: none;
   }
 
-  .styles > panel-block {
+  .styles > .panel-block {
     padding: 0;
   }
 }

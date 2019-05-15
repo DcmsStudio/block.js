@@ -20,11 +20,12 @@
         :selection="selection"
         :onChange="onBlocksChange"/>
       <div v-else class="no-blocks-tip">Empty, try add block with blow tools.</div>
+      <BlockEditingTools v-show="selection" :selection="selection" />
       <div class="bj-buttons">
         <BlockTypeList @clickItem="onNewBlock" />
       </div>
     </div>
-    <BlockInspector :data="selection" />
+    <BlockInspector :data="selection" @styleChange="onStyleChange"/>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ import * as pluginApi from '@/plugins'
 import { styleDefaults, toStyle } from '@/css'
 import Block from './Block.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
+import BlockEditingTools from '@/components/BlockEditingTools.vue'
 import BlockInspector from '@/BlockInspector.vue'
 
 export default {
@@ -41,6 +43,7 @@ export default {
     Block,
     BlockInspector,
     BlockTypeList,
+    BlockEditingTools,
   },
   reactiveProvide: {
     name: 'blockJS',
@@ -53,6 +56,7 @@ export default {
       'createBlockDefaults',
       'onClickBlock',
       'toStyle',
+      'onStyleChange',
     ],
   },
   data() {
@@ -104,6 +108,12 @@ export default {
     setHoverUuid(uuid) {
       this.hoverUuid = uuid
     },
+    onStyleChange(event) {
+      console.log(event)
+      if (this.selection) {
+        this.selection.style[event.key] = event.value
+      }
+    },
   },
 }
 </script>
@@ -126,6 +136,7 @@ export default {
   justify-content: center;
 
   .container {
+    position: relative;
     max-width: 800px;
     min-height: 100%;
     margin: 0 auto;

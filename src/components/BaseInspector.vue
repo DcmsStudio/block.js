@@ -1,6 +1,7 @@
 <template>
   <div class="bj-base-inspector">
-    <div class="panel">
+    <div class="bj-title"><b-icon :icon="icon" />&nbsp;{{ name }}</div>
+    <div v-if="attrs" class="panel attrs">
       <p class="panel-heading">
         <b-icon icon="list" size="small" /> Attributes
       </p>
@@ -8,11 +9,11 @@
         <slot />
       </div>
     </div>
-    <div class="panel">
+    <div v-if="styles" class="panel styles">
       <p class="panel-heading">
         <b-icon icon="file-code" size="small" /> Style
       </p>
-      <div class="panel-block panel-block-style">
+      <div class="panel-block">
         <css-editor :styleList="styleList" :styleData="data.style" />
       </div>
     </div>
@@ -25,6 +26,14 @@ import * as pluginApi from '@/plugins'
 export default {
   props: {
     data: Object,
+    attrs: {
+      type: Boolean,
+      default: true,
+    },
+    styles: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -32,6 +41,12 @@ export default {
     }
   },
   computed: {
+    name() {
+      return pluginApi.getPluginById(this.data.id).displayName
+    },
+    icon() {
+      return pluginApi.getPluginById(this.data.id).icon
+    },
     styleList() {
       return pluginApi.getPluginById(this.data.id).styleList
     },
@@ -43,13 +58,24 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 .bj-base-inspector {
+  .bj-title {
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0.5em;
+    border-bottom: 1px solid $grey-lighter;
+  }
+
   .panel {
     margin-bottom: 0;
   }
 
   .panel-heading {
     border-radius: 0;
-    border-top: none;
+    border-top-width: 0;
     border-left: none;
     border-right: none;
     font-size: 14px;
@@ -61,7 +87,7 @@ export default {
     border-right: none;
   }
 
-  .panel-block-style {
+  .styles > panel-block {
     padding: 0;
   }
 }

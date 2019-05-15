@@ -6,10 +6,10 @@
   @mouseleave="onMouseOut"
   @mouseover="onMouseOver"
   @click.stop="blockJS.onClickBlock(data)">
-    <div class="bj-block-content">
+    <div class="bj-block-content" :style="customStyleTarget ? null : blockJS.toStyle(data.style)">
       <slot />
     </div>
-    <BlockEditingTools v-if="blockJS.isEditing" :block="data" :style="editingToolsStyle" />
+    <BlockEditingTools v-if="blockJS.isEditing" :block="data" />
   </div>
 </template>
 
@@ -24,7 +24,10 @@ export default {
   inject: ['blockJS'],
   props: {
     data: Object,
-    editingToolsStyle: Object,
+    customStyleTarget: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     isSelected() {

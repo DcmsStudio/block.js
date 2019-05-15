@@ -1,5 +1,5 @@
 <template>
-  <BlockComponent class="bj-columns" :data="data" :editingToolsStyle="editingToolsStyle">
+  <BlockComponent class="bj-columns" :data="data">
     <div class="columns">
       <div v-for="(_, index) in data.attrs.columns"  :key="index" class="column">
         <component v-if="data.items[index]"
@@ -25,17 +25,14 @@ export default {
     data: Object,
     level: Number,
   },
-  data() {
-    return {
-      editingToolsStyle: {
-
-      },
-    }
-  },
 }
 </script>
 
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
 
+.columns {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
 </style>

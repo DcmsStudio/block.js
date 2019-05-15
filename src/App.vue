@@ -30,7 +30,7 @@
 
 <script>
 import * as pluginApi from '@/plugins'
-import { styleDefaults } from './css-editor'
+import { styleDefaults, toStyle } from '@/css'
 import Block from './Block.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockInspector from '@/BlockInspector.vue'
@@ -52,6 +52,7 @@ export default {
       'selection',
       'createBlockDefaults',
       'onClickBlock',
+      'toStyle',
     ],
   },
   data() {
@@ -73,6 +74,9 @@ export default {
     },
   },
   methods: {
+    toStyle(styleData) {
+      return toStyle(styleData)
+    },
     onBlocksChange(e) {
       if (e.added) {
         this.selection = e.added.element
@@ -92,7 +96,7 @@ export default {
       const plugin = pluginApi.getPluginById(id)
       const block = plugin.createDefaults()
       block.style = block.style || {}
-      plugin.styleList.forEach(key => {
+      plugin.styleList.forEach((key) => {
         block.style[key] = styleDefaults[key]
       })
       return block

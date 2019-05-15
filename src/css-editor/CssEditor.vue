@@ -19,8 +19,6 @@ export default {
     styleList: Array,
     styleData: Object,
   },
-  methods: {
-  }
 }
 </script>
 

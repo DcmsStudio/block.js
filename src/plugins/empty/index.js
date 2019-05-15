@@ -1,10 +1,10 @@
 import uuid from 'uuid'
-import Columns from './Columns.vue'
+import Empty from './Empty.vue'
 import Inspector from './Inspector.vue'
 
 function createDefaults() {
   return {
-    id: Columns.name,
+    id: Empty.name,
     uuid: uuid.v4(),
     attrs: {
       columns: 3,
@@ -15,12 +15,12 @@ function createDefaults() {
 }
 
 export default {
-  id: Columns.name,
-  block: Columns,
-  icon: 'columns',
-  displayName: 'Columns',
+  id: Empty.name,
+  block: Empty,
+  icon: 'square-full',
+  displayName: 'Empty',
   styleList: [
-    'padding',
+    'height',
   ],
   inspector: Inspector,
   createDefaults,

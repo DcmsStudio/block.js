@@ -1,5 +1,5 @@
 <template>
-  <b-field :label="label">
+  <b-field class="bj-unit-field" :label="label">
     <b-input class="unit-input"
       type="number"
       :value="value.value"
@@ -36,5 +36,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bulma/sass/utilities/_all";
 
+.bj-unit-field {
+  .label {
+    width: 60px;
+    font-size: 12px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
 </style>

@@ -1,17 +1,15 @@
 <template>
   <div class="bj-block-placeholder" :class="{ 'odd': isOdd }">
-    <BlockDropdown @select="onBlockTypeSelect">
-      <div class="btn-add-block"><b-icon icon="plus" size="is-small"></b-icon></div>
-    </BlockDropdown>
+    <div class="btn-add-block" @click="blockJS.showBlockDropdown($event, parentData, index)">
+      <b-icon icon="plus" size="is-small" />
+    </div>
   </div>
 </template>
 
 <script>
-import BlockDropdown from '@/components/BlockDropdown.vue'
 
 export default {
   components: {
-    BlockDropdown,
   },
   inject: ['blockJS'],
   props: {
@@ -28,14 +26,6 @@ export default {
   computed: {
     isOdd() {
       return this.index % 2 === 1
-    },
-  },
-  methods: {
-    onBlockTypeSelect(item) {
-      const block = this.blockJS.createBlockDefaults(item.id)
-      const { items } = this.parentData
-      items[this.index] = block
-      this.parentData.items = items.slice(0)
     },
   },
 }

@@ -26,6 +26,12 @@
       </div>
     </div>
     <BlockInspector :data="selection" @styleChange="onStyleChange"/>
+    <BlockDropdown
+      :visible="blockDropdown.visible"
+      :top="blockDropdown.top"
+      :left="blockDropdown.left"
+      @hide="blockDropdown.visible = false"
+      @select="onBlockDropdownSelect" />
   </div>
 </template>
 
@@ -36,6 +42,7 @@ import Block from './Block.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockEditingTools from '@/components/BlockEditingTools.vue'
 import BlockInspector from '@/BlockInspector.vue'
+import BlockDropdown from '@/components/BlockDropdown.vue'
 
 export default {
   name: 'app',
@@ -44,6 +51,7 @@ export default {
     BlockInspector,
     BlockTypeList,
     BlockEditingTools,
+    BlockDropdown,
   },
   reactiveProvide: {
     name: 'blockJS',
@@ -57,6 +65,7 @@ export default {
       'onClickBlock',
       'toStyle',
       'onStyleChange',
+      'showBlockDropdown',
     ],
   },
   data() {
@@ -70,6 +79,13 @@ export default {
         icon: 'save',
         tooltip: 'Save',
       }],
+      blockDropdown: {
+        visible: false,
+        top: 0,
+        left: 0,
+        block: null,
+        index: 0,
+      },
     }
   },
   computed: {
@@ -113,6 +129,22 @@ export default {
       if (this.selection) {
         this.selection.style[event.key] = event.value
       }
+    },
+    showBlockDropdown(event, block, index) {
+      const rect = event.currentTarget.getBoundingClientRect()
+      const appRect = this.$el.getBoundingClientRect()
+      this.blockDropdown.top = rect.top - appRect.top + event.offsetY + 5
+      this.blockDropdown.left = rect.left - appRect.left + event.offsetX + 5
+      this.blockDropdown.block = block
+      this.blockDropdown.visible = true
+      this.blockDropdown.index = index
+    },
+    onBlockDropdownSelect(item) {
+      const block = this.createBlockDefaults(item.id)
+      let { items } = this.blockDropdown.block
+      items = items.slice(0)
+      items[this.blockDropdown.index] = block
+      this.blockDropdown.block.items = items
     },
   },
 }

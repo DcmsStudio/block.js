@@ -1,10 +1,7 @@
 <template>
-  <b-dropdown class="bj-block-dropdown" aria-role="list">
-    <slot slot="trigger" />
-    <b-dropdown-item class="bj-block-dropdown-item" aria-role="listitem" :custom="true">
-      <BlockTypeList @clickItem="$emit('select', $event)"/>
-    </b-dropdown-item>
-  </b-dropdown>
+  <div v-if="visible" v-click-outside="onClickOutSide" class="bj-block-dropdown" :style="style">
+    <BlockTypeList @clickItem="$emit('select', $event)"/>
+  </div>
 </template>
 
 <script>
@@ -14,6 +11,24 @@ export default {
   components: {
     BlockTypeList,
   },
+  props: {
+    visible: Boolean,
+    top: Number,
+    left: Number,
+  },
+  computed: {
+    style() {
+      return {
+        top: `${this.top}px`,
+        left: `${this.left}px`,
+      }
+    },
+  },
+  methods: {
+    onClickOutSide() {
+      this.$emit('hide')
+    },
+  },
 }
 </script>
 
@@ -21,16 +36,12 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 .bj-block-dropdown {
-  .dropdown-content {
-    background-color: $white-ter;
-  }
-
-  .bj-block-dropdown-item {
-    color: $text;
-    &:hover {
-      color: $text;
-      background-color: $white-ter;
-    }
-  }
+  background-color: $white-ter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border: 1px solid $grey-lighter;
+  box-shadow: 0 0 10px $grey-light;
 }
 </style>

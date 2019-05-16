@@ -4,6 +4,12 @@
       <b-icon :icon="icon" />
     </div>
     <div class="bj-block-label bj-block-close">
+      <b-icon icon="arrow-alt-up" size="is-small" />
+    </div>
+    <div class="bj-block-label bj-block-close">
+      <b-icon icon="arrow-alt-down" size="is-small" />
+    </div>
+    <div class="bj-block-label bj-block-close">
       <b-icon icon="trash-alt" size="is-small" />
     </div>
   </div>
@@ -49,6 +55,9 @@ export default {
         this.visible = true
         const selectedEl = document.querySelector('.bj-block-component.selected')
         const toolsParentEl = this.$el.parentNode
+        if (!selectedEl || !toolsParentEl) {
+          return
+        }
         const toolsParentRect = toolsParentEl.getBoundingClientRect()
         const selectedRect = selectedEl.getBoundingClientRect()
         this.style.top = `${selectedRect.top - toolsParentRect.top}px`
@@ -83,10 +92,6 @@ export default {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     background-color: $warning;
-
-    &.draggable-handle {
-      cursor: move;
-    }
   }
 }
 </style>

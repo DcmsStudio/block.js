@@ -1,27 +1,25 @@
 <template>
-  <BlockComponent :data="data" :customStyleTarget="true">
+  <bj-block-component :data="data" :customStyleTarget="true">
     <div class="bj-layout" :style="blockJS.toStyle(data.style)">
       <template v-for="(_, index) in data.attrs.itemCount">
         <component v-if="data.items[index]"
           class="bj-layout-item"
-          :key="index" :is="data.items[index].id" :data="data.items[index]"
+          :key="index" :is="data.items[index].id"
+          :data="data.items[index]"
           :level="level+1" />
-        <BlockPlaceholder v-else :key="index" :index="index" :level="level" :parentData="data" />
+        <bj-block-placeholder v-else
+          :key="index"
+          :index="index"
+          :level="level"
+          :parentData="data" />
       </template>
     </div>
-  </BlockComponent>
+  </bj-block-component>
 </template>
 
 <script>
-import BlockComponent from '@/components/BlockComponent.vue'
-import BlockPlaceholder from '@/components/BlockPlaceholder.vue'
-
 export default {
   name: 'bj-layout',
-  components: {
-    BlockComponent,
-    BlockPlaceholder,
-  },
   inject: ['blockJS'],
   props: {
     data: Object,

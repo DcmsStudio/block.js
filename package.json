@@ -5,9 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name block src/block.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
+  "main": "dist/block.common.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
   "dependencies": {
     "buefy": "^0.7.5",
     "bulma": "^0.7.4",

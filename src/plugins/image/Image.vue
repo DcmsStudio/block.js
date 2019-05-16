@@ -1,19 +1,17 @@
 <template>
-<BlockComponent class="bj-image" :data="data" :customStyleTarget="true">
+<bj-block-component class="bj-image" :data="data" :customStyleTarget="true">
   <figure class="image" :class="data.attrs.class" :style="blockJS.toStyle(data.style)">
     <img v-if="data.attrs.src" :src="data.attrs.src">
     <b-icon v-else class="placeholder" icon="image" />
   </figure>
-</BlockComponent>
+</bj-block-component>
 </template>
 
 <script>
-import BlockComponent from '@/components/BlockComponent.vue'
 
 export default {
   name: 'bj-image',
   components: {
-    BlockComponent,
   },
   inject: ['blockJS'],
   props: {

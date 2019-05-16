@@ -15,8 +15,6 @@
 
 export default {
   name: 'bj-block-component',
-  components: {
-  },
   inject: ['blockJS'],
   props: {
     data: Object,

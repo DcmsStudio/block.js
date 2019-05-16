@@ -16,9 +16,7 @@ export default {
   },
   inject: ['blockJS'],
   props: {
-    selection: Object,
     blocks: Array,
-    onChange: Function,
   },
 }
 </script>
@@ -29,8 +27,4 @@ export default {
 
 <style lang="scss" mode="editing">
 @import "~bulma/sass/utilities/_all";
-
-.block-js-ghost {
-  opacity: 0.5;
-}
 </style>

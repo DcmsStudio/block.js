@@ -73,6 +73,7 @@ export default {
 
 .bj-block-editing-tools {
   position: absolute;
+  z-index: 500;
   top: 0;
   left: 0px;
   transform: translate(0, -100%);

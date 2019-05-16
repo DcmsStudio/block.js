@@ -44,9 +44,9 @@ export default {
     name: 'blockJS',
     include: [
       'mode',
+      'isEditing',
       'hoverUuid',
       'setHoverUuid',
-      'isEditing',
       'selection',
       'createBlockDefaults',
       'onClickBlock',

@@ -1,16 +1,26 @@
 import './block.scss'
 
 import Vue from 'vue'
-import Buefy from 'buefy'
 import ReactiveProvide from 'vue-reactive-provide'
 
 import * as pluginApi from '@/plugins'
 import BlockComp from './Block.vue'
+import BlockComponent from '@/components/BlockComponentProd.vue'
+import BlockPlaceholder from '@/components/BlockPlaceholderProd.vue'
 
-Vue.use(Buefy, {
-  defaultIconPack: 'fas',
-})
 Vue.use(ReactiveProvide)
+
+Vue.component('bj-block-component', BlockComponent)
+Vue.component('bj-block-placeholder', BlockPlaceholder)
+
+delete BlockComp.inject
+BlockComp.reactiveProvide = {
+  name: 'blockJS',
+  include: [
+    'mode',
+    'isEditing',
+  ],
+}
 
 export default {
   Block: BlockComp,

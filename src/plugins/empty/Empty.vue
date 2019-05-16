@@ -1,19 +1,15 @@
 <template>
-<BlockComponent :data="data" :customStyleTarget="true">
-  <div class="bj-empty" :style="blockJS.toStyle(data.style)">
+<bj-block-component :data="data" :customStyleTarget="true">
+  <div v-if="blockJS.isEditing" class="bj-empty" :style="blockJS.toStyle(data.style)">
     Empty
   </div>
-</BlockComponent>
+</bj-block-component>
 </template>
 
 <script>
-import BlockComponent from '@/components/BlockComponent.vue'
 
 export default {
   name: 'bj-empty',
-  components: {
-    BlockComponent,
-  },
   inject: ['blockJS'],
   props: {
     data: Object,

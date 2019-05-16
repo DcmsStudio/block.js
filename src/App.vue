@@ -37,7 +37,7 @@
 
 <script>
 import * as pluginApi from '@/plugins'
-import { styleDefaults, toStyle } from '@/css'
+import { toStyle } from '@/css'
 import Block from './Block.vue'
 import BlockTypeList from '@/components/BlockTypeList.vue'
 import BlockEditingTools from '@/components/BlockEditingTools.vue'
@@ -113,13 +113,7 @@ export default {
       this.selection = block
     },
     createBlockDefaults(id) {
-      const plugin = pluginApi.getPluginById(id)
-      const block = plugin.createDefaults()
-      block.style = block.style || {}
-      plugin.styleList.forEach((key) => {
-        block.style[key] = styleDefaults[key]
-      })
-      return block
+      return pluginApi.createDefaults(id)
     },
     setHoverUuid(uuid) {
       this.hoverUuid = uuid

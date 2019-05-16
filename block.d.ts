@@ -11,6 +11,9 @@ export interface BlockPlugin {
   // display name
   displayName: string
 
+  // the attribute settings
+  attrs: Boolean | Object,
+
   // the adaptable properties of css style
   styleList: string[]
 

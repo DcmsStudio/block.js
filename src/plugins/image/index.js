@@ -1,27 +1,23 @@
-import uuid from 'uuid'
 import Image from './Image.vue'
-import Inspector from './Inspector.vue'
-
-function createDefaults() {
-  return {
-    id: Image.name,
-    uuid: uuid.v4(),
-    attrs: {
-      src: '',
-      class: 'is-3by1',
-    },
-    style: {},
-    items: [],
-  }
-}
 
 export default {
   id: Image.name,
   block: Image,
   icon: 'image',
   displayName: 'Image',
+  attrs: {
+    src: {
+      type: 'src',
+      default: '',
+    },
+    class: {
+      type: 'select',
+      default: 'is-3by1',
+      props: {
+        options: ['is-3by1'],
+      },
+    },
+  },
   styleList: [
   ],
-  inspector: Inspector,
-  createDefaults,
 }

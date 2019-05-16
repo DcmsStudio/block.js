@@ -1,15 +1,23 @@
 <template>
   <div class="bj-base-inspector">
     <div class="bj-title"><b-icon :icon="icon" />&nbsp;{{ name }}</div>
-    <div v-if="attrs" class="panel attrs">
+    <div v-if="isShowAttrs" class="panel attrs">
       <p class="panel-heading">
         <b-icon icon="list" size="small" /> Attributes
       </p>
       <div class="panel-block">
-        <slot />
+        <slot v-if="hasInspector" />
+        <template v-else>
+          <component v-for="attr in attrList"
+            :is="'inspector-' + attr.type + '-field'"
+            :key="attr.name"
+            :label="attr.name"
+            v-bind="attr.props"
+            v-model="data.attrs[attr.name]" />
+        </template>
       </div>
     </div>
-    <div v-if="styles" class="panel styles">
+    <div v-if="styleList && styleList.length > 0" class="panel styles">
       <p class="panel-heading">
         <b-icon icon="file-code" size="small" /> Style
       </p>
@@ -28,14 +36,6 @@ export default {
   inject: ['blockJS'],
   props: {
     data: Object,
-    attrs: {
-      type: Boolean,
-      default: true,
-    },
-    styles: {
-      type: Boolean,
-      default: true,
-    },
   },
   data() {
     return {
@@ -48,6 +48,19 @@ export default {
     },
     icon() {
       return pluginApi.getPluginById(this.data.id).icon
+    },
+    hasInspector() {
+      return this.data && pluginApi.getPluginById(this.data.id).inspector
+    },
+    isShowAttrs() {
+      return !!pluginApi.getPluginById(this.data.id).attrs
+    },
+    attrList() {
+      const { attrs } = pluginApi.getPluginById(this.data.id)
+      return Object.keys(attrs).map(key => ({
+        name: key,
+        ...attrs[key],
+      }))
     },
     styleList() {
       return pluginApi.getPluginById(this.data.id).styleList
@@ -89,8 +102,30 @@ export default {
     border-right: none;
   }
 
+
+  .field.horizontal {
+    display: flex;
+    align-items: center;
+
+    .field-label, .label {
+      margin-right: 0;
+      min-width: 80px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+  }
+
   .styles > .panel-block {
     padding: 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .attrs > .panel-block {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 </style>

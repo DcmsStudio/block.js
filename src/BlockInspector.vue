@@ -1,14 +1,26 @@
 <template>
   <div class="blockjs-inspector">
     <div v-if="!data" class="empty-tips">No selection.</div>
-    <component v-else :is="data.id + '-inspector'" :data="data" />
+    <component v-else-if="hasInspector" :is="data.id + '-inspector'" :data="data" />
+    <BaseInspector v-else :data="data"></BaseInspector>
   </div>
 </template>
 
 <script>
+import * as pluginApi from '@/plugins'
+import BaseInspector from '@/components/BaseInspector.vue'
+
 export default {
+  components: {
+    BaseInspector,
+  },
   props: {
     data: Object,
+  },
+  computed: {
+    hasInspector() {
+      return this.data && pluginApi.getPluginById(this.data.id).inspector
+    },
   },
 }
 </script>
@@ -29,20 +41,6 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .field.horizontal {
-    display: flex;
-    align-items: center;
-
-    .field-label, .label {
-      margin-right: 0;
-      min-width: 80px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      margin-bottom: 0;
-    }
   }
 }
 </style>

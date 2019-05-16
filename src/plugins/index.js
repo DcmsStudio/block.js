@@ -15,7 +15,7 @@ export function registerPlugin(plugin) {
   const pluginId = plugin.id
   plugins.push(plugin)
   pluginMap[pluginId] = plugin
-  Vue.component(pluginId, plugin.block)
+  Vue.component(pluginId, plugin.component)
   if (plugin.inspector) {
     Vue.component(`${pluginId}-inspector`, plugin.inspector)
   }

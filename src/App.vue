@@ -1,18 +1,5 @@
 <template>
   <div class="app">
-    <!-- <div v-if="isEditing" class="bj-toolbar level">
-      <div class="level-left">
-        <ToolbarItem v-for="(item, idx) in toolbarItems"
-          :key="idx"
-          :tooltip="item.tooltip"
-          :icon="item.icon"
-          @click.native="onClickToolbarItem(item.id)"/>
-      </div>
-      <div class="level-center">
-
-      </div>
-      <div class="level-right"></div>
-    </div> -->
     <div class="container">
       <Block v-if="blocks && blocks.length > 0" :mode="mode"
         :class="{ editing: isEditing }"

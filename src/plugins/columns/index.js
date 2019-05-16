@@ -2,7 +2,7 @@ import Columns from './Columns.vue'
 
 export default {
   id: Columns.name,
-  block: Columns,
+  component: Columns,
   icon: 'columns',
   displayName: 'Columns',
   attrs: {

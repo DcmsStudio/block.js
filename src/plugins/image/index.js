@@ -2,7 +2,7 @@ import Image from './Image.vue'
 
 export default {
   id: Image.name,
-  block: Image,
+  component: Image,
   icon: 'image',
   displayName: 'Image',
   attrs: {

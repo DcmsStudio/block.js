@@ -2,7 +2,7 @@ import Layout from './Layout.vue'
 
 export default {
   id: Layout.name,
-  block: Layout,
+  component: Layout,
   icon: 'th-large',
   displayName: 'Layout',
   attrs: {

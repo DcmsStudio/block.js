@@ -1,11 +1,10 @@
 <template>
-  <b-field class="bj-inspector-link-field horizontal"
+  <b-field class="bj-inspector-text-field horizontal"
     :label="label"
     custom-class="is-small">
     <b-input
         size="is-small"
         type="text"
-        icon="link"
         :value="value"
         @input="$emit('input', $event)">
     </b-input>
@@ -22,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-.bj-inspector-link-field {
+.bj-inspector-textarea-field {
 
 }
 </style>

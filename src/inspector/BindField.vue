@@ -1,11 +1,10 @@
 <template>
-  <b-field class="bj-inspector-link-field horizontal"
+  <b-field class="bj-inspector-bind-field horizontal"
     :label="label"
     custom-class="is-small">
     <b-input
         size="is-small"
         type="text"
-        icon="link"
         :value="value"
         @input="$emit('input', $event)">
     </b-input>
@@ -22,7 +21,12 @@ export default {
 </script>
 
 <style lang="scss">
-.bj-inspector-link-field {
+@import "~bulma/sass/utilities/_all";
 
+.bj-inspector-bind-field {
+  .label {
+    color: $info;
+    font-weight: bold;
+  }
 }
 </style>

@@ -9,12 +9,22 @@ export default {
     src: {
       type: 'src',
       default: '',
+      bindable: true,
     },
-    class: {
+    ratio: {
       type: 'select',
       default: 'is-3by1',
       props: {
-        options: ['is-3by1'],
+        options: [{
+          id: 'is-3by1',
+          label: '3:1',
+        }, {
+          id: 'is-1by1',
+          label: '1:1',
+        }, {
+          id: 'is-5by4',
+          label: '5:4',
+        }],
       },
     },
   },

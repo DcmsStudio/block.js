@@ -8,12 +8,26 @@
       <div class="panel-block">
         <slot v-if="hasInspector" />
         <template v-else>
-          <component v-for="attr in attrList"
-            :is="'inspector-' + attr.type + '-field'"
-            :key="attr.name"
-            :label="attr.name"
-            v-bind="attr.props"
-            v-model="data.attrs[attr.name]" />
+          <div v-for="attr in attrList"
+              :key="attr.name"
+              class="inspector-field-wrap">
+            <component
+              v-if="isBindAttr(attr)"
+              :is="getFieldCompName(attr)"
+              :label="attr.name"
+              v-bind="attr.props"
+              v-model="data.binds[attr.name]" />
+            <component
+              v-else
+              :is="getFieldCompName(attr)"
+              :label="attr.name"
+              v-bind="attr.props"
+              v-model="data.attrs[attr.name]" />
+            <div class="bind-switch" :class="{ bind: isBindAttr(attr), visible: attr.bindable }">
+              <b-icon icon="code"
+                @click.native="onBindClick(attr)" />
+            </div>
+          </div>
         </template>
       </div>
     </div>
@@ -64,6 +78,23 @@ export default {
     },
     styleList() {
       return pluginApi.getPluginById(this.data.id).styleList
+    },
+  },
+  methods: {
+    isBindAttr(attr) {
+      return attr.bindable && this.data.binds && this.data.binds[attr.name]
+    },
+    getFieldCompName(attr) {
+      return this.isBindAttr(attr) ? 'inspector-bind-field' : `inspector-${attr.type}-field`
+    },
+    onBindClick(attr) {
+      this.data.binds = this.data.binds || {}
+      if (this.data.binds[attr.name]) {
+        delete this.data.binds[attr.name]
+      } else {
+        this.data.binds[attr.name] = attr.name
+      }
+      this.blockJS.onBindsChange(this.data.binds)
     },
   },
 }
@@ -126,6 +157,37 @@ export default {
   .attrs > .panel-block {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .inspector-field-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 0;
+
+    > .field {
+      flex: 1;
+      margin-bottom: 0;
+
+      > .control {
+        flex: 1;
+      }
+    }
+
+    > .bind-switch {
+      font-size: 10px;
+      color: $grey-light;
+      padding: 0 5px;
+      visibility: hidden;
+
+      &.bind {
+        visibility: visible;
+        color: $info;
+      }
+      &.visible {
+        visibility: visible;
+      }
+    }
   }
 }
 </style>

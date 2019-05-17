@@ -1,18 +1,18 @@
 <template>
 <bj-block-component class="bj-image" :data="data" :customStyleTarget="true">
-  <figure class="image" :class="data.attrs.class" :style="blockJS.toStyle(data.style)">
-    <img v-if="data.attrs.src" :src="data.attrs.src">
+  <figure class="image" :class="data.attrs.ratio" :style="blockJS.toStyle(data.style)">
+    <img v-if="data.attrs.src" :src="getAttrValue('attr')">
     <b-icon v-else class="placeholder" icon="image" />
   </figure>
 </bj-block-component>
 </template>
 
 <script>
+import attrMixin from '@/plugins/attrMixin'
 
 export default {
   name: 'bj-image',
-  components: {
-  },
+  mixins: [attrMixin],
   inject: ['blockJS'],
   props: {
     data: Object,

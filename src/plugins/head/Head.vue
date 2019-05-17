@@ -1,5 +1,8 @@
 <template>
 <BlockComponent :data="data">
+  <div :class="sizeClass">
+    {{getAttrValue('text')}}
+  </div>
 </BlockComponent>
 </template>
 
@@ -8,7 +11,7 @@ import BlockComponent from '@/components/BlockComponent.vue'
 import attrMixin from '@/plugins/attrMixin'
 
 export default {
-  name: 'bj-component',
+  name: 'bj-head',
   mixins: [attrMixin],
   components: {
     BlockComponent,
@@ -16,6 +19,11 @@ export default {
   inject: ['blockJS'],
   props: {
     data: Object,
+  },
+  computed: {
+    sizeClass() {
+      return `is-size-${this.data.attrs.size.substr(1)}`
+    },
   },
 }
 </script>

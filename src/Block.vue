@@ -17,6 +17,7 @@ export default {
   inject: ['blockJS'],
   props: {
     blocks: Array,
+    data: Object,
   },
 }
 </script>

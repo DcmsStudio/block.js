@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import cloneDeep from 'clone-deep'
 import * as pluginApi from '@/plugins'
 import { toStyle } from '@/css'
 import Block from './Block.vue'
@@ -52,6 +53,7 @@ export default {
       'onClickBlock',
       'toStyle',
       'onStyleChange',
+      'onBindsChange',
       'showBlockDropdown',
     ],
   },
@@ -106,10 +108,12 @@ export default {
       this.hoverUuid = uuid
     },
     onStyleChange(event) {
-      console.log(event)
       if (this.selection) {
         this.selection.style[event.key] = event.value
       }
+    },
+    onBindsChange(binds) {
+      this.selection.binds = cloneDeep(binds)
     },
     showBlockDropdown(event, block, index) {
       const rect = event.currentTarget.getBoundingClientRect()

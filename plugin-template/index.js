@@ -2,7 +2,7 @@ import Component from './Component.vue'
 
 export default {
   id: Component.name,
-  block: Component,
+  component: Component,
   icon: '',
   displayName: 'Component',
   attrs: {},

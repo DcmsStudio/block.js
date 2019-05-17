@@ -7,6 +7,7 @@ import layoutPlugin from './layout'
 import columnsPlugin from './columns'
 import emptyPlugin from './empty'
 import imagePlugin from './image'
+import headPlugin from './head'
 
 const plugins = []
 const pluginMap = {}
@@ -50,6 +51,7 @@ export function createDefaults(id) {
     attrs,
     style,
     items: [],
+    binds: {},
   }
 }
 
@@ -57,3 +59,4 @@ registerPlugin(layoutPlugin)
 registerPlugin(columnsPlugin)
 registerPlugin(emptyPlugin)
 registerPlugin(imagePlugin)
+registerPlugin(headPlugin)

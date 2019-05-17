@@ -19,6 +19,7 @@ BlockComp.reactiveProvide = {
   include: [
     'mode',
     'isEditing',
+    'data',
   ],
 }
 

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "bj-head",
+    "uuid": "2d0e421d-a48a-46e2-a34e-576634f55105",
+    "attrs": { "text": "This is head.", "size": "h2" },
+    "style": {},
+    "items": [],
+    "binds": { "text": "text" }
+  },
+  {
+    "id": "bj-image",
+    "uuid": "fbfad888-cd34-4a8a-bcaf-1b84b661b1d6",
+    "attrs": { "src": "", "ratio": "is-3by1" },
+    "style": {},
+    "items": [],
+    "binds": {}
+  },
+  {
+    "id": "bj-layout",
+    "uuid": "43370d78-250c-4190-84ab-667a94a355c0",
+    "attrs": { "itemCount": 3 },
+    "style": {
+      "margin": {
+        "multiple": true,
+        "top": { "value": 0, "unit": "em" },
+        "right": { "value": 0, "unit": "em" },
+        "bottom": { "value": 0, "unit": "em" },
+        "left": { "value": 0, "unit": "em" }
+      },
+      "padding": {
+        "multiple": true,
+        "top": { "value": 0, "unit": "em" },
+        "right": { "value": 0, "unit": "em" },
+        "bottom": { "value": 0, "unit": "em" },
+        "left": { "value": 0, "unit": "em" }
+      },
+      "alignItems": "center"
+    },
+    "items": [
+      {
+        "id": "bj-head",
+        "uuid": "bb0c66af-51ea-44f5-b7fa-6c83fb0d35f0",
+        "attrs": { "text": "This is head.", "size": "h5" },
+        "style": {},
+        "items": [],
+        "binds": {}
+      }
+    ],
+    "binds": {}
+  }
+]

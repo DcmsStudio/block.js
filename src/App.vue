@@ -46,6 +46,7 @@ export default {
     include: [
       'mode',
       'isEditing',
+      'data',
       'hoverUuid',
       'setHoverUuid',
       'selection',
@@ -75,6 +76,7 @@ export default {
         block: null,
         index: 0,
       },
+      data: {},
     }
   },
   computed: {

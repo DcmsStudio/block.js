@@ -8,11 +8,9 @@
 </template>
 
 <script>
-import Draggable from 'vuedraggable'
 
 export default {
   components: {
-    Draggable,
   },
   inject: ['blockJS'],
   props: {

@@ -1,7 +1,7 @@
 <template>
 <BlockComponent :data="data">
   <div :class="sizeClass">
-    {{getAttrValue('text')}}
+    {{getAttrValue('text') || '[No value]'}}
   </div>
 </BlockComponent>
 </template>

@@ -65,10 +65,16 @@ export default {
     ],
   },
   data() {
+    let blocks = localStorage.getItem('block.js-temp-blocks')
+    if (blocks) {
+      blocks = JSON.parse(blocks)
+    } else {
+      blocks = []
+    }
     return {
       mode: 'editing',
       hoverUuid: '',
-      blocks: [],
+      blocks: blocks,
       selection: null,
       toolbarItems: [{
         id: 'save',
@@ -89,6 +95,11 @@ export default {
     isEditing() {
       return this.mode === 'editing'
     },
+  },
+  watch: {
+    blocks(val) {
+      localStorage.setItem('block.js-temp-blocks', JSON.stringify(val))
+    }
   },
   methods: {
     toStyle(styleData) {

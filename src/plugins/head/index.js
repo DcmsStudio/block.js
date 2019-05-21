@@ -19,5 +19,8 @@ export default {
       },
     },
   },
-  styleList: [],
+  styleList: [
+    'margin',
+    'padding',
+  ],
 }

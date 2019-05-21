@@ -29,5 +29,7 @@ export default {
     },
   },
   styleList: [
+    'margin',
+    'padding',
   ],
 }

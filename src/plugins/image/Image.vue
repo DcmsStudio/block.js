@@ -1,7 +1,8 @@
 <template>
-<bj-block-component class="bj-image" :data="data" :customStyleTarget="true">
-  <figure class="image" :class="data.attrs.ratio" :style="blockJS.toStyle(data.style)">
-    <img v-if="data.attrs.src" :src="getAttrValue('attr')">
+<bj-block-component class="bj-image" :data="data">
+  <figure class="image" :class="data.attrs.ratio">
+    <img class="source" v-if="src" :src="src">
+    <img class="placeholder" v-else src="http://via.placeholder.com/1200/FAFAFA/000000?text=[Image]">
   </figure>
 </bj-block-component>
 </template>
@@ -16,6 +17,11 @@ export default {
   props: {
     data: Object,
   },
+  computed: {
+    src() {
+      return this.getAttrValue('src')
+    }
+  }
 }
 </script>
 
@@ -28,8 +34,15 @@ export default {
     background-color: $grey-lighter;
     width: 100%;
 
-    > img {
+    > .source {
       object-fit: cover;
+      object-position: center;
+    }
+
+    > .placeholder {
+      object-fit: cover;
+      object-position: center;
+      background-color: #fafafa;
     }
 
     .placeholder {

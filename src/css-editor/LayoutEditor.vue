@@ -27,7 +27,6 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 .bj-css-layout {
-  padding: 0.25em 1em;
   width: 100%;
 
   .css-title {

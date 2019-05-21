@@ -33,15 +33,16 @@ export default {
   width: 100%;
 
   > .odd {
-    background-color: $white-ter;
+    background-color: #fbfbfb;
+    border-top: 1px dashed #f1f1f1;
+    border-bottom: 1px dashed #f1f1f1;
   }
 
   > * {
-    margin: 5px 0;
+    padding: 0.625em 1em;
   }
 
   > .field {
-    padding: 0.25em 1em;
     align-items: center;
   }
 }

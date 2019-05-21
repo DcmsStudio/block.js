@@ -3,13 +3,13 @@
     <div class="bj-block-label">
       <b-icon :icon="icon" />
     </div>
-    <div class="bj-block-label bj-block-close">
+    <div class="bj-block-label" @click="$emit('moveUp')">
       <b-icon icon="arrow-alt-up" size="is-small" />
     </div>
-    <div class="bj-block-label bj-block-close">
+    <div class="bj-block-label" @click="$emit('moveDown')">
       <b-icon icon="arrow-alt-down" size="is-small" />
     </div>
-    <div class="bj-block-label bj-block-close">
+    <div class="bj-block-label danger" @click="$emit('delete')">
       <b-icon icon="trash-alt" size="is-small" />
     </div>
   </div>

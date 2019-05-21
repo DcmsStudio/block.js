@@ -7,7 +7,13 @@
         :selection="selection"
         :onChange="onBlocksChange"/>
       <div v-else class="no-blocks-tip">Empty, try add block with blow tools.</div>
-      <BlockEditingTools v-show="selection" :selection="selection" />
+      <BlockEditingTools
+        ref="tools"
+        v-show="selection"
+        :selection="selection"
+        @moveUp="onClickMoveUp"
+        @moveDown="onClickMoveDown"
+        @delete="onClickDelete" />
       <div class="bj-buttons">
         <BlockTypeList @clickItem="onNewBlock" />
       </div>
@@ -133,6 +139,39 @@ export default {
       items[this.blockDropdown.index] = block
       this.blockDropdown.block.items = items
     },
+    onClickMoveUp() {
+      let idx = this.blocks.indexOf(this.selection)
+      if (idx <= 0) {
+        return
+      }
+      let blocks = this.blocks.slice()
+      let temp = blocks[idx - 1]
+      blocks[idx] = temp
+      blocks[idx - 1] = this.selection
+      this.blocks = blocks
+      this.$refs.tools.updateTools()
+    },
+    onClickMoveDown() {
+      let idx = this.blocks.indexOf(this.selection)
+      if (idx >= this.blocks.length - 1) {
+        return
+      }
+      let blocks = this.blocks.slice()
+      let temp = blocks[idx + 1]
+      blocks[idx] = temp
+      blocks[idx + 1] = this.selection
+      this.blocks = blocks
+      this.$refs.tools.updateTools()
+    },
+    onClickDelete() {
+      let idx = this.blocks.indexOf(this.selection)
+      if (idx >= 0) {
+        let blocks = this.blocks.slice()
+        blocks.splice(idx,  1)
+        this.blocks = blocks
+        this.selection = null
+      }
+    }
   },
 }
 </script>

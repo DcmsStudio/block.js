@@ -4,18 +4,18 @@ module.exports = {
       entry: 'src/main.js',
       template: 'public/index.html',
       filename: 'index.html',
-      title: 'Index Page',
+      title: 'block.js',
     },
     example: {
       entry: 'src/example.js',
       template: 'public/index.html',
       filename: 'example.html',
-      title: 'Index Page',
+      title: 'Example of block.js',
     },
   },
   configureWebpack: {
-    // output: {
-    //   libraryExport: 'default',
-    // },
+    output: {
+      libraryExport: 'default',
+    },
   },
 }

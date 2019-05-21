@@ -10,6 +10,7 @@ Vue.component('css-unit-field', UnitField)
 Vue.component('css-margin', LayoutEditor)
 Vue.component('css-padding', LayoutEditor)
 Vue.component('css-height', UnitField)
+Vue.component('css-fontSize', UnitField)
 
 const registerOptionsComponent = (name, parent) => {
   Vue.component(`css-${name}`, {

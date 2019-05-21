@@ -18,6 +18,7 @@ export const styleDefaults = {
   margin: cloneDeep(boxDefaults),
   padding: cloneDeep(boxDefaults),
   height: cloneDeep(unitDefaults),
+  fontSize: Object.assign(cloneDeep(unitDefaults), { value: 1 }),
   alignItems: 'flex-start',
 }
 

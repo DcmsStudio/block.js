@@ -1,8 +1,8 @@
 <template>
-<BlockComponent :data="data">
-  <component :is="this.data.attrs.size" class="title" :class="sizeClass">
-    {{getAttrValue('text') || '[No value]'}}
-  </component>
+<BlockComponent class="bj-paragraph" :data="data" :customStyleTarget="true">
+  <div class="content">
+    <p :style="blockJS.toStyle(data.style)">{{getAttrValue('text') || '[No content]'}}</p>
+  </div>
 </BlockComponent>
 </template>
 
@@ -11,7 +11,7 @@ import BlockComponent from '@/components/BlockComponent.vue'
 import attrMixin from '@/plugins/attrMixin'
 
 export default {
-  name: 'bj-head',
+  name: 'bj-paragraph',
   mixins: [attrMixin],
   components: {
     BlockComponent,
@@ -20,14 +20,15 @@ export default {
   props: {
     data: Object,
   },
-  computed: {
-    sizeClass() {
-      return `is-size-${this.data.attrs.size.substr(1)}`
-    },
-  },
 }
 </script>
 
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
+
+.bj-paragraph {
+  p {
+    min-height: 1rem;
+  }
+}
 </style>

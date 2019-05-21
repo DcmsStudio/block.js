@@ -8,6 +8,7 @@ import columnsPlugin from './columns'
 import emptyPlugin from './empty'
 import imagePlugin from './image'
 import headPlugin from './head'
+import paragraphPlugin from './paragraph'
 
 const plugins = []
 const pluginMap = {}
@@ -60,3 +61,4 @@ registerPlugin(columnsPlugin)
 registerPlugin(emptyPlugin)
 registerPlugin(imagePlugin)
 registerPlugin(headPlugin)
+registerPlugin(paragraphPlugin)

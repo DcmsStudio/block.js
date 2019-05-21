@@ -42,7 +42,7 @@ export default {
   .label {
     width: 60px;
     font-size: 12px;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
     display: flex;
     flex-direction: row;
     align-items: center;

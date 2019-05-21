@@ -36,8 +36,13 @@ export default {
     background-color: $white-ter;
   }
 
+  > * {
+    margin: 5px 0;
+  }
+
   > .field {
     padding: 0.25em 1em;
+    align-items: center;
   }
 }
 </style>

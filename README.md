@@ -1,4 +1,4 @@
-# block.js
+# Block.js
 
 > This project is WIP.
 
